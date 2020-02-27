@@ -19,7 +19,9 @@ export class DataService {
 
     const headers = {
       'Content-Type': 'application/json',
-      'imi_bot_middleware_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiVGhpcyBpcyBJTUkgQk9UIG1pZGRsZXdhcmUiLCJpYXQiOjE1Njc4ODc5MTAsImV4cCI6NDE1OTg4NzkxMH0.dYbMaf8HYMD5K532p7DpHN0cmru-JKMjst-WS9zi7u8'
+      'imi_bot_middleware_token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiVGhpcyBpcyBJTUkgQk9UIG1pZGRsZXdhcmUiLCJpYXQiOjE1Njc4ODc5MTAsImV4cCI6NDE1OTg4NzkxMH0.dYbMaf8HYMD5K532p7DpHN0cmru-JKMjst-WS9zi7u8',
+      'proxy_url':"https://rtm.imibot.ai/api/v1/socket/sendMessage",
+      "wait_for_response":'true'
     };
 
 
@@ -40,7 +42,7 @@ export class DataService {
       }
   }
 
-    return this.http.post('https://rtm.imibot.ai/api/v1/socket/sendMessage', body, { headers })
+    return this.http.post('https://imi-bot-middleware.herokuapp.com/api/v1/proxy', body, { headers })
       // .catch(this.handleError);
       .pipe(catchError((err) => {
         console.log('Error: Unable to complete request...', err.message);
