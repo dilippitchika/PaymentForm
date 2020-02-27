@@ -3,6 +3,7 @@ import { IPaymentSettings } from '../../data/payment-settings';
 import { NgForm, NgModel } from '@angular/forms';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-payment-form',
@@ -35,7 +36,9 @@ export class PaymentFormComponent implements OnInit {
   postError = false;
   postErrorMessage = '';
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private route: ActivatedRoute) { }
+
+  uid: string;
 
   onSubmit(form: NgForm) {
     console.log('in onSubmit: ', form.valid);
@@ -66,6 +69,8 @@ export class PaymentFormComponent implements OnInit {
     // this.itemQuantity = this.paymentSettings.quantity;
     // this.itemPrice = this.paymentSettings.price;
     console.log(this.itemName, this.itemQuantity);
+    this.uid = this.route.snapshot.params['uid'];
+    console.log("uid" + this.uid);
   }
 }
 
