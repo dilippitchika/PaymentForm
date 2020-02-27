@@ -44,7 +44,7 @@ export class PaymentFormComponent implements OnInit {
     console.log('in onSubmit: ', form.valid);
     console.log(form);
     if (form.valid) {
-      this.dataService.postPaymentSettingsForm(this.paymentSettings).subscribe(
+      this.dataService.postPaymentSettingsForm(this.uid).subscribe(
         result => console.log('success: ', result),
         error => this.onHttpError(error)
       );
