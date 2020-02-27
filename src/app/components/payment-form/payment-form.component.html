@@ -1,0 +1,249 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 center">
+      <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+        <div class="container">
+          <h4>Order Summary</h4>
+          <div class="row div-heading">
+            <div class="col-xs-6 col-md-6 left-align-col">
+              Items
+            </div>
+            <div class="col-xs-6 col-md-3 right-align-col">
+              Quantity
+            </div>
+            <div class="col-xs-6 col-md-3 right-align-col">
+              Price
+            </div>
+          </div>
+
+          <hr />
+
+          <div class="row text">
+            <div class="col-xs-6 col-md-6 form-group left-align-col">
+              {{ itemName }}
+            </div>
+            <div class="col-xs-6 col-md-3 form-group right-align-col">
+              {{ itemQuantity }}
+            </div>
+            <div class="col-xs-6 col-md-3 form-group right-align-col">
+              JOD {{ itemPrice }}
+            </div>
+          </div>
+
+          <div class="row text">
+            <div class="form-group col-md-6">
+              <input
+                id="couponCode"
+                name="couponCode"
+                class="form-control input-group-sm"
+                [(ngModel)]="paymentSettings.couponCode"
+                #couponCodeField="ngModel"
+                (blur)="onBlur(couponCodeField)"
+                [class.field-error]="form.submitted && couponCodeField.invalid"
+                aria-label="Coupon Code"
+                placeholder="Coupon Code"
+              />
+            </div>
+
+            <div class="form-group col-md-2">
+              <a href="#">Apply</a>
+            </div>
+          </div>
+
+          <!-- <div class="row text">
+            <div class="col-md-6 left-align-col">
+              SUBTOTAL
+            </div>
+            <div class="col-md-6 right-align-col">
+              JOD 7.87
+            </div>
+          </div> -->
+
+          <!-- <div class="row div-spacing text">
+            <div class="col-md-6 left-align-col">
+              Service Tax(12.5%)
+            </div>
+            <div class="col-md-6 right-align-col">
+              $1.25
+            </div>
+          </div> -->
+
+          <div class="row div-spacing text text-colour">
+            <div class="col-md-6 left-align-col text-colour">
+              TOTAL
+            </div>
+            <div class="col-md-6 right-align-col">
+              JOD 7.87
+            </div>
+          </div>
+
+          <hr />
+
+          <h4>Account Information</h4>
+
+          <div class="row text">
+            <div class="form-group col-md-6">
+              <input
+                id="firstname"
+                name="firstname"
+                class="form-control input-group-sm"
+                [(ngModel)]="paymentSettings.firstName"
+                #firstNameField="ngModel"
+                (blur)="onBlur(firstNameField)"
+                [class.field-error]="form.submitted && firstNameField.invalid"
+                aria-label="First Name"
+                placeholder="Isabella"
+              />
+            </div>
+
+            <div class="form-group col-md-6">
+              <input
+                id="lastname"
+                name="lastname"
+                class="form-control input-group-sm"
+                [(ngModel)]="paymentSettings.lastName"
+                #lastNameField="ngModel"
+                (blur)="onBlur(lastNameField)"
+                [class.field-error]="form.submitted && lastNameField.invalid"
+                aria-label="Last Name"
+                placeholder="Law"
+              />
+            </div>
+          </div>
+
+          <div class="row text">
+            <div class="form-group col-md-12">
+              <input
+                id="email"
+                name="email"
+                class="form-control input-group-sm"
+                [(ngModel)]="paymentSettings.email"
+                #emailField="ngModel"
+                (blur)="onBlur(emailField)"
+                [class.field-error]="form.submitted && emailField.invalid"
+                aria-label="Email"
+                placeholder="isabella_law@zillum.com"
+              />
+            </div>
+          </div>
+
+          <h4 class="div-spacing">Payment Information</h4>
+
+          <div class="row text div-spacing">
+            <div class="form-group col-md-12">
+              <input
+                id="creditcardnumber"
+                name="creditcardnumber"
+                class="form-control input-group-sm"
+                [(ngModel)]="paymentSettings.creditCardNumber"
+                #creditCardNumberField="ngModel"
+                (blur)="onBlur(creditCardNumberField)"
+                [class.field-error]="
+                  form.submitted && creditCardNumberField.invalid
+                "
+                aria-label="Credit Card Number"
+                placeholder="**** **** **** ****"
+              />
+            </div>
+          </div>
+          <!-- <div class="col-auto my-1">
+            <label class="mr-sm-2" for="inlineFormCustomSelect"
+              >Preference</label
+            >
+            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+              <option selected>Choose...</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+            </select>
+          </div> -->
+
+          <div class="row text">
+            <div class="form-group col-md-4">
+              <input
+                id="month"
+                name="month"
+                class="form-control input-group-sm"
+                [(ngModel)]="paymentSettings.creditCardExpiryMonth"
+                #monthField="ngModel"
+                (blur)="onBlur(monthField)"
+                [class.field-error]="form.submitted && monthField.invalid"
+                aria-label="Month"
+                placeholder="01"
+              />
+            </div>
+            <div class="form-group col-md-4">
+              <input
+                id="year"
+                name="year"
+                class="form-control input-group-sm"
+                [(ngModel)]="paymentSettings.creditCardExpiryYear"
+                #yearField="ngModel"
+                (blur)="onBlur(yearField)"
+                [class.field-error]="form.submitted && yearField.invalid"
+                aria-label="year"
+                placeholder="2022"
+              />
+            </div>
+            <div class="form-group col-md-4">
+              <input
+                id="cvv"
+                name="cvv"
+                class="form-control input-group-sm"
+                [(ngModel)]="paymentSettings.cvvCode"
+                #cvvField="ngModel"
+                (blur)="onBlur(cvvField)"
+                [class.field-error]="form.submitted && cvvField.invalid"
+                aria-label="Credit Card cvv"
+                placeholder="***"
+              />
+            </div>
+          </div>
+
+          <h4>Card Address</h4>
+
+          <div class="row text div-spacing">
+            <div class="form-check form-group col-md-12">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="billingAddress"
+                name="billingAddress"
+                [(ngModel)]="paymentSettings.isCardAddressSameAsBillingAddress"
+              />
+              <label class="form-check-label" for="billingAddress">
+                Same As Billing Address
+              </label>
+            </div>
+          </div>
+
+          <div class="row text">
+            <div class="form-check form-group col-md-12">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                id="termsAndConditions"
+                name="termsAndConditions"
+                [(ngModel)]="paymentSettings.isTermsAndConditionsAgreed"
+              />
+              <label class="form-check-label" for="termsAndConditions">
+                I agree to <a href="#">Terms & Conditions</a> and the
+                <a href="#">Privacy Policy</a>
+              </label>
+            </div>
+          </div>
+
+          <div class="mx-auto text-center">
+            <button
+              id="button"
+              name="button"
+              class="btn btn-primary center button"
+            >
+              Pay
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
